@@ -33,11 +33,11 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-      var player = $(".player");
-      var orianta = 0;
-      var step = 0;
+      let player = $(".player");
+      let orianta = 0;
+      let step = 0;
 
-      var myHandler = function (event) {
+      let myHandler = function (event) {
         if (step != 0) {
           return;
         }
@@ -67,7 +67,8 @@
 
       $("body").keydown(myHandler);
 
-      var doMove = function () {
+      //定義一個 doMove 函數，該函數每隔50毫秒執行一次，用來更新玩家角色的位置。
+      let doMove = function () {
         setTimeout(doMove, 50);
 
         // 走完一個方向
