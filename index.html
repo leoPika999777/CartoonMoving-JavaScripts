@@ -24,18 +24,31 @@
         height: 128px;
         overflow: hidden;
       }
+      .treasure {
+        position: absolute;
+        background-image: url("img/treasure01.png");
+        background-position: 0px 0px;
+        width: 150px;
+        height: 146px;
+        overflow: hidden;
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="player"></div>
+      
     </div>
+    <button onclick="treasureOpen()">打開寶箱</button>
+    <div class="treasure"></div>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       let player = $(".player");
       let orianta = 0;
       let step = 0;
+      let treasure = $(".treasure");
 
       let myHandler = function (event) {
         if (step != 0) {
@@ -145,6 +158,17 @@
       };
 
       doMove();
+      let treasureOpen = function () {
+      console.log("test");
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          let currentPosition = parseInt(
+            treasure.css("background-position").split(" ")[0]
+          );
+          treasure.css("background-position", currentPosition - 150 + "px 0");
+        }, i * 100);
+      }
+    };
     </script>
   </body>
 </html>
