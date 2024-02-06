@@ -47,6 +47,54 @@
         top: 360px;
         left: 530px;
       }
+
+      .cheese {
+        background-image: url("img/cheese-01.png");
+      }
+      .bomb {
+        background-image: url("img/bomb-01.png");
+      }
+
+      .getcheese {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+      }
+
+      .getcheese img {
+        width: auto;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+      }
+      .getbomb {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+      }
+
+      .getbomb img {
+        width: auto;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+      }
     </style>
   </head>
   <body>
@@ -55,6 +103,8 @@
     </div>
     <div class="treasure"></div>
     <div class="treasure1"></div>
+    <div class="getcheese"><img src="img/after-01.png" alt="" srcset="" /></div>
+    <div class="getbomb"><img src="img/after-02.png" alt="" srcset="" /></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
@@ -170,7 +220,7 @@
       };
       doMove();
 
-      // 第一個寶箱  檢查碰撞函式
+      // 第一個寶箱 & 第二個寶箱  檢查碰撞函式
       let checkCollision = function () {
         if (isColliding(player, treasure)) {
           console.log("碰到第一個");
@@ -214,6 +264,8 @@
             // 寶箱打開後會跳出警告
             if (i === 4) {
               alert("恭喜獲得起司");
+              $(".getcheese").show(); // 顯示getcheese元素
+              $(".player").hide();
             }
           }, i * 100);
         }
@@ -244,6 +296,8 @@
             if (i === 4) {
               setTimeout(() => {
                 alert("炸彈");
+                $(".getbomb").show(); // 顯示bomb元素
+                $(".player").hide();
               }, 100);
             }
           }, i * 100);
