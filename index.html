@@ -53,11 +53,8 @@
     <div class="container">
       <div class="player"></div>
     </div>
-    <!-- <button onclick="treasureOpen()">打開寶箱</button>
-    <button onclick="treasureOpen1()">打開寶箱</button> -->
     <div class="treasure"></div>
     <div class="treasure1"></div>
-    <p class="show"></p>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
@@ -93,7 +90,7 @@
             break;
         }
 
-        console.log(orianta, step, "---");
+        // console.log(orianta, step, "---");
       };
 
       $("body").keydown(myHandler);
@@ -106,6 +103,7 @@
         if (orianta != 0 && step == 0) {
           orianta = 0;
           checkCollision();
+          checkCollision2();
           return;
         }
 
@@ -113,7 +111,7 @@
           return;
         }
 
-        console.log(orianta, step);
+        // console.log(orianta, step);
         switch (orianta) {
           case 1: //上
             player.css(
@@ -170,12 +168,19 @@
         }
         step--;
       };
+      doMove();
 
       // 第一個寶箱  檢查碰撞函式
       let checkCollision = function () {
         if (isColliding(player, treasure)) {
+          console.log("碰到第一個");
           setTimeout(() => {
             popup2();
+          }, 100); // 使用setTimeout異步執行
+        } else if (isColliding(player, treasure1)) {
+          console.log("碰到第2個");
+          setTimeout(() => {
+            popup3();
           }, 100); // 使用setTimeout異步執行
         }
       };
@@ -196,10 +201,9 @@
         );
       };
       doMove();
-
       // 第一個寶箱打開
       let treasureOpen = function () {
-        console.log("test");
+        console.log("第一個寶箱打開");
         for (let i = 0; i < 5; i++) {
           setTimeout(() => {
             let currentPosition = parseInt(
@@ -216,7 +220,7 @@
       };
 
       //詢問是否打開第一個寶箱
-      var button = document.querySelector(".popuptest");
+      // var button = document.querySelector(".popuptest");
 
       function popup2(e) {
         if (confirm("是否打開寶箱") == true) {
@@ -224,11 +228,9 @@
         }
       }
 
-      button.addEventListener("click", popup2);
-
       // 第二個寶箱打開
       let treasureOpen1 = function () {
-        console.log("test");
+        console.log("第2個寶箱打開");
         for (let i = 0; i < 5; i++) {
           setTimeout(() => {
             let currentPosition = parseInt(
@@ -247,6 +249,12 @@
           }, i * 100);
         }
       };
+      //詢問是否打開第2個寶箱
+      function popup3(e) {
+        if (confirm("是否打開寶箱") == true) {
+          treasureOpen1();
+        }
+      }
     </script>
   </body>
 </html>
