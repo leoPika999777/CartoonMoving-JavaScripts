@@ -171,7 +171,7 @@
         step--;
       };
 
-      // 檢查碰撞函式
+      // 第一個寶箱  檢查碰撞函式
       let checkCollision = function () {
         if (isColliding(player, treasure)) {
           setTimeout(() => {
@@ -180,13 +180,13 @@
         }
       };
 
-      // 判斷兩個元素是否碰撞的函式
+      // 第一個寶箱   判斷兩個元素是否碰撞的函式
       let isColliding = function (element1, element2) {
         let rect1 = element1[0].getBoundingClientRect();
         let rect2 = element2[0].getBoundingClientRect();
 
         let horizontalMargin = 20; // 左右調整的邊界值
-        let verticalMargin = 40; // 上下調整的邊界值
+        let verticalMargin = 30; // 上下調整的邊界值
 
         return !(
           rect1.right - horizontalMargin < rect2.left + horizontalMargin ||
@@ -215,7 +215,7 @@
         }
       };
 
-      //詢問是否打開寶箱
+      //詢問是否打開第一個寶箱
       var button = document.querySelector(".popuptest");
 
       function popup2(e) {
