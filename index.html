@@ -53,10 +53,11 @@
     <div class="container">
       <div class="player"></div>
     </div>
-    <button onclick="treasureOpen()">打開寶箱</button>
-    <button onclick="treasureOpen1()">打開寶箱</button>
+    <!-- <button onclick="treasureOpen()">打開寶箱</button>
+    <button onclick="treasureOpen1()">打開寶箱</button> -->
     <div class="treasure"></div>
     <div class="treasure1"></div>
+    <p class="show"></p>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
@@ -172,8 +173,10 @@
 
       // 檢查碰撞函式
       let checkCollision = function () {
-        if (isColliding(player, treasure) || isColliding(player, treasure1)) {
-          alert("hi");
+        if (isColliding(player, treasure)) {
+          setTimeout(() => {
+            popup2();
+          }, 100); // 使用setTimeout異步執行
         }
       };
 
@@ -194,7 +197,6 @@
       };
       doMove();
 
-
       // 第一個寶箱打開
       let treasureOpen = function () {
         console.log("test");
@@ -207,13 +209,22 @@
 
             // 寶箱打開後會跳出警告
             if (i === 4) {
-              setTimeout(() => {
-                alert("恭喜獲得起司");
-              }, 100);
+              alert("恭喜獲得起司");
             }
           }, i * 100);
         }
       };
+
+      //詢問是否打開寶箱
+      var button = document.querySelector(".popuptest");
+
+      function popup2(e) {
+        if (confirm("是否打開寶箱") == true) {
+          treasureOpen();
+        }
+      }
+
+      button.addEventListener("click", popup2);
 
       // 第二個寶箱打開
       let treasureOpen1 = function () {
